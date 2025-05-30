@@ -34,8 +34,8 @@ export class App {
     {
       title: 'Backend Developer',
       companyLogoUrl: 'https://logo.clearbit.com/facebook.com',
-      country: 'Germany',
-      city: 'Berlin',
+      country: 'United Kingdom',
+      city: 'London',
       description: 'Develop RESTful APIs and microservices.',
       link: 'https://example.com/job3'
     },
