@@ -1,0 +1,33 @@
+.site-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #3f51b5;
+    margin: 24px 0;
+    text-align: center;
+  }
+  
+  .job-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 4em;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    background-color: #f5f5f5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .header > h1 {
+    font-size: 24px;
+    color: #3f51b5;
+    padding: 1em;
+    margin: 0;
+  }
+  
