@@ -1,9 +1,11 @@
+
 <div class="header">
   <h1 class="site-title">FullstackJobs.io</h1>
 </div>
 
 <mat-divider></mat-divider>
-
 <div class="job-list">
   <app-job-card *ngFor="let job of jobs" [job]="job"></app-job-card>
 </div>
+
+<router-outlet />

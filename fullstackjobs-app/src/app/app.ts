@@ -21,7 +21,7 @@ export class App {
       country: 'Germany',
       city: 'Berlin',
       description: 'Join a fast-paced team building scalable systems.',
-      link: 'https://example.com/job1'
+      link: '/job'
     },
     {
       title: 'Frontend Developer',

@@ -17,9 +17,11 @@
       </div>
   
       <div class="job-action">
-        <a [href]="job.link" target="_blank">
-          <button mat-raised-button color="primary">Apply now</button>
+        <nav>
+        <a [routerLink]="job.link">
+          Apply now
         </a>
+        </nav>
       </div>
     </div>
   </mat-card>
