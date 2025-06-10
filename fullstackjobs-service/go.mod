@@ -10,7 +10,14 @@ require (
 	github.com/antchfx/xmlquery v1.4.4 // indirect
 	github.com/antchfx/xpath v1.3.3 // indirect
 	github.com/bits-and-blooms/bitset v1.22.0 // indirect
+	github.com/chromedp/cdproto v0.0.0-20250530212709-4dcc110a7b92 // indirect
+	github.com/chromedp/chromedp v0.13.6 // indirect
+	github.com/chromedp/sysutil v1.1.0 // indirect
+	github.com/go-json-experiment/json v0.0.0-20250517221953-25912455fbc8 // indirect
 	github.com/gobwas/glob v0.2.3 // indirect
+	github.com/gobwas/httphead v0.1.0 // indirect
+	github.com/gobwas/pool v0.2.1 // indirect
+	github.com/gobwas/ws v1.4.0 // indirect
 	github.com/gocolly/colly/v2 v2.2.0 // indirect
 	github.com/gofiber/fiber/v2 v2.52.8 // indirect
 	github.com/golang/groupcache v0.0.0-20241129210726-2c02b8208cf8 // indirect
@@ -36,11 +43,11 @@ require (
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.51.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect
-	golang.org/x/crypto v0.36.0 // indirect
-	golang.org/x/net v0.37.0 // indirect
-	golang.org/x/sync v0.12.0 // indirect
-	golang.org/x/sys v0.31.0 // indirect
-	golang.org/x/text v0.23.0 // indirect
+	golang.org/x/crypto v0.39.0 // indirect
+	golang.org/x/net v0.41.0 // indirect
+	golang.org/x/sync v0.15.0 // indirect
+	golang.org/x/sys v0.33.0 // indirect
+	golang.org/x/text v0.26.0 // indirect
 	google.golang.org/appengine v1.6.8 // indirect
 	google.golang.org/protobuf v1.36.6 // indirect
 	gorm.io/driver/postgres v1.6.0 // indirect

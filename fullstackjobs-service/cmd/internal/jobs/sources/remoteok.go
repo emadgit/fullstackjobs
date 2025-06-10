@@ -1,41 +1,31 @@
 package sources
 
 import (
+	"context"
 	"log"
-	"strings"
 	"time"
 
-	"github.com/gocolly/colly/v2"
+	"github.com/chromedp/chromedp"
 )
 
 func ScrapeRemoteOK() {
-	c := colly.NewCollector(
-		colly.AllowedDomains("remoteok.com"),
+	ctx, cancel := chromedp.NewContext(context.Background())
+	defer cancel()
+
+	// This will hold the entire HTML of the page after rendering
+	var html string
+
+	// Navigate and wait for job elements to load
+	err := chromedp.Run(ctx,
+		chromedp.Navigate("https://remoteok.com"),
+		chromedp.Sleep(2*time.Second), // wait for JS-rendered content
+		chromedp.OuterHTML("body", &html),
 	)
-
-	c.OnHTML("tr.job", func(e *colly.HTMLElement) {
-		title := e.ChildText("h2")
-		company := e.ChildText("h3")
-		location := e.ChildText("span.location")
-		datePosted := e.ChildText("time")
-
-		if title == "" || company == "" {
-			return // Skip if title or company is missing
-		}
-
-		log.Printf("Job Title: %s, Company: %s, Location: %s, Date Posted: %s\n",
-			strings.TrimSpace(title), strings.TrimSpace(company), strings.TrimSpace(location), strings.TrimSpace(datePosted))
-	})
-
-	c.OnError(func(r *colly.Response, err error) {
-		log.Printf("Request failed with status code %d: %v", r.StatusCode, err)
-	})
-
-	err := c.Visit("https://remoteok.com/")
 	if err != nil {
-		log.Fatalf("Failed to visit RemoteOK: %v", err)
+		log.Fatalf("Failed to render page: %v", err)
 	}
 
-	time.Sleep(2 * time.Second) // Allow time for scraping to complete
+	// Now parse the HTML
+	parseJobsFromHTML(html)
 	log.Println("RemoteOK scraping completed.")
 }

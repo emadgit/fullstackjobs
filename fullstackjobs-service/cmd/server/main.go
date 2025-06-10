@@ -31,7 +31,7 @@ func main() {
 
 	// Schedule job scraping every hour
 	c := cron.New()
-	_, err = c.AddFunc("@every 1h", func() {
+	_, err = c.AddFunc("@every 3m", func() {
 		log.Println("🕒 Starting job scraping...")
 		scrapper.ScrapeJobs()
 	})
