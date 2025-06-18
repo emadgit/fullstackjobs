@@ -12,4 +12,8 @@ import { Job } from '../../models/job';
 })
 export class JobCardComponent {
   @Input() job!: Job;
+
+  getImageSrc(url: string): string {
+    return url !== "" ? url : 'assets/images/job-placeholder.png';
+  }
 }

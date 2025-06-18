@@ -1,7 +1,13 @@
 <mat-card class="job-card">
   <div class="job-card-container">
-    <div class="job-logo" *ngIf="job.logoUrl">
-      <img [src]="job.logoUrl" alt="Company Logo" />
+    <div class="job-logo">
+      <img
+      [src]="getImageSrc(job.logoUrl)" 
+      width="96"
+      height="96"
+      alt="Company Logo"
+    />
+    
     </div>
 
     <div class="job-info">
