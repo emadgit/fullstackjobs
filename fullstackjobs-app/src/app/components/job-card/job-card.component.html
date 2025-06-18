@@ -1,28 +1,27 @@
 <mat-card class="job-card">
-    <div class="job-card-container">
-      <div class="job-logo">
-        <img [src]="job.companyLogoUrl" alt="Company Logo" />
+  <div class="job-card-container">
+    <div class="job-logo" *ngIf="job.logoUrl">
+      <img [src]="job.logoUrl" alt="Company Logo" />
+    </div>
+
+    <div class="job-info">
+      <div class="job-title">
+        <a [href]="job.link" target="_blank" rel="noopener noreferrer">{{ job.title }}</a>
       </div>
-  
-      <div class="job-info">
-        <div class="job-title">
-          <a [href]="job.link" target="_blank">{{ job.title }}</a>
-        </div>
-        <div class="job-location">
-          {{ job.country }} - {{ job.city }}
-        </div>
-        <div class="job-description">
-          {{ job.description }}
-        </div>
+      <div class="job-location">
+        {{ job.country }} - {{ job.city }}
       </div>
-  
-      <div class="job-action">
-        <nav>
-        <a [routerLink]="job.link">
-          Apply now
-        </a>
-        </nav>
+      <div class="job-description" *ngIf="job.description">
+        {{ job.description }}
       </div>
     </div>
-  </mat-card>
-  
+
+    <div class="job-action">
+      <nav>
+        <a [href]="job.link" target="_blank" rel="noopener noreferrer">
+          Apply now
+        </a>
+      </nav>
+    </div>
+  </div>
+</mat-card>

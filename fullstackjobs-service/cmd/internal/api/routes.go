@@ -1,6 +1,9 @@
 package api
 
 import (
+	"fullstackjobs-service/cmd/internal/models"
+	"fullstackjobs-service/cmd/internal/storage"
+
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -12,19 +15,26 @@ func SetupRoutes(app *fiber.App) {
 	api.Get("/jobs/:id", getJobByID)
 }
 
-// Dummy handler for GET /jobs
+// GET /api/jobs - Returns all jobs
 func getJobs(c *fiber.Ctx) error {
-	// Return a placeholder response
-	return c.JSON(fiber.Map{
-		"jobs": []string{"Google - Fullstack Engineer", "Netflix - Senior Fullstack Dev"},
-	})
+	var jobs []models.Job
+	if err := storage.DB.Order("posted_at desc").Find(&jobs).Error; err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": "Failed to fetch jobs",
+		})
+	}
+	return c.JSON(jobs)
 }
 
-// Dummy handler for GET /jobs/:id
+// GET /api/jobs/:id - Returns a single job by ID
 func getJobByID(c *fiber.Ctx) error {
 	jobID := c.Params("id")
-	return c.JSON(fiber.Map{
-		"id":   jobID,
-		"role": "Fullstack Engineer",
-	})
+	var job models.Job
+
+	if err := storage.DB.First(&job, "id = ?", jobID).Error; err != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
+			"error": "Job not found",
+		})
+	}
+	return c.JSON(job)
 }

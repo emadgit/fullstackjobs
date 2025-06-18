@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { JobCardComponent } from './components/job-card/job-card.component';
+import { JobService } from  './services/job';
+import { Job } from './models/job';
 
 @Component({
   selector: 'app-root',
@@ -11,41 +13,20 @@ import { JobCardComponent } from './components/job-card/job-card.component';
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })
-export class App {
+export class App implements OnInit {
   protected title = 'fullstackjobs-app';
+  protected jobs: Job[] = [];
 
-  protected jobs = [
-    {
-      title: 'Fullstack Engineer',
-      companyLogoUrl: 'https://logo.clearbit.com/google.com',
-      country: 'Germany',
-      city: 'Berlin',
-      description: 'Join a fast-paced team building scalable systems.',
-      link: '/job'
-    },
-    {
-      title: 'Frontend Developer',
-      companyLogoUrl: 'https://logo.clearbit.com/microsoft.com',
-      country: 'Netherlands',
-      city: 'Amsterdam',
-      description: 'Work with modern Angular and reactive programming.',
-      link: 'https://example.com/job2'
-    },
-    {
-      title: 'Backend Developer',
-      companyLogoUrl: 'https://logo.clearbit.com/facebook.com',
-      country: 'United Kingdom',
-      city: 'London',
-      description: 'Develop RESTful APIs and microservices.',
-      link: 'https://example.com/job3'
-    },
-    {
-      title: 'DevOps Engineer',
-      companyLogoUrl: 'https://logo.clearbit.com/amazon.com',
-      country: 'Netherlands',
-      city: 'Amsterdam',
-      description: 'Automate deployment and manage cloud infrastructure.',
-      link: 'https://example.com/job4'
-    }
-  ];
+  constructor(private jobService: JobService) {}
+
+  ngOnInit(): void {
+    this.jobService.getJobs().subscribe({
+      next: (data) => {
+        this.jobs = data;
+      },
+      error: (err) => {
+        console.error('Failed to fetch jobs', err);
+      }
+    });
+  }
 }
